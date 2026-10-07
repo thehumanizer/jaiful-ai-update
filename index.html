@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="สรุปข่าว AI ทุกเช้า 07:00 น. ภาษาไทยเข้าใจง่าย อ่าน 30 วินาทีก็ไม่ตกข่าว พร้อมบอกว่าเราควรทำอะไรต่อ">
+<meta name="theme-color" content="#FFF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#19100D" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://aiupdate.jaiful.life/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JAIFUL">
+<meta property="og:title" content="JAIFUL AI Update — สรุปข่าว AI ทุกเช้า">
+<meta property="og:description" content="กลัวตกข่าว AI? อ่าน 3 เรื่องที่ต้องรู้ใน 30 วินาที อัปเดตทุกเช้า 07:00 น.">
+<meta property="og:url" content="https://aiupdate.jaiful.life/">
+<meta property="og:image" content="https://aiupdate.jaiful.life/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<title>JAIFUL AI Update</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Mitr:wght@500;600&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: mobile-first morning briefing. Compact sticky bar → headline → 30-second card → scannable story rows that expand in place → trends last. One 680px reading column; widens to two columns of rows on desktop. */
+:root{
+  --bg:#FFF8F3; --surface:#FFFFFF; --sunk:#FBEDE3; --ink:#2B1813; --ink-2:#55392F; --ink-3:#86675C;
+  --line:#F1DCCF; --accent:#D9252C; --accent-ink:#FFFFFF; --amber:#B9500D; --amber-soft:#FFF0DD;
+  --hot:#D9252C; --hot-soft:#FFE4DE; --mid:#E8680F; --mid-soft:#FFEBD9; --good:#177A4E; --good-soft:#E4F4EA;
+  --grad:linear-gradient(90deg,#FC212E 0%,#FD4A27 35%,#FD7E1A 70%,#FBA83A 100%);
+  --display:"Mitr","IBM Plex Sans Thai",system-ui,sans-serif;
+  --body:"IBM Plex Sans Thai Looped","Noto Sans Thai Looped","Sarabun",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --word:"Fredoka","Mitr",system-ui,sans-serif;
+  --num:var(--body);
+  --b-openai:#10A37F; --b-anthropic:#C8643B; --b-google:#3B7BF0; --b-meta:#0866FF; --b-microsoft:#6B4FD8;
+  --b-xai:#3A3A3A; --b-apple:#8A8F98; --b-china:#D0342C; --b-others:#8A7840;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#19100D; --surface:#231714; --sunk:#2D1F1B; --ink:#FBEDE5; --ink-2:#D3B9AE; --ink-3:#A2877B;
+  --line:#3A2822; --accent:#FF6A5C; --accent-ink:#2B1813; --amber:#FFB35C; --amber-soft:#36230F;
+  --hot:#FF6A5C; --hot-soft:#43201A; --mid:#FF9A4D; --mid-soft:#3A2514; --good:#5BD19A; --good-soft:#15301F;
+  --b-xai:#C9C9C9; --b-others:#C9B47A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#19100D; --surface:#231714; --sunk:#2D1F1B; --ink:#FBEDE5; --ink-2:#D3B9AE; --ink-3:#A2877B;
+  --line:#3A2822; --accent:#FF6A5C; --accent-ink:#2B1813; --amber:#FFB35C; --amber-soft:#36230F;
+  --hot:#FF6A5C; --hot-soft:#43201A; --mid:#FF9A4D; --mid-soft:#3A2514; --good:#5BD19A; --good-soft:#15301F;
+  --b-xai:#C9C9C9; --b-others:#C9B47A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.75;margin:0;font-variant-numeric:tabular-nums}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:680px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+@media (min-width:1000px){.wrap.wide{max-width:1080px}}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--grad)}
+.top-in{max-width:1080px;margin:0 auto;padding:8px 16px 11px;display:flex;align-items:center;gap:10px}
+.brand-mark{display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;min-width:0}
+.brand-mark img{width:34px;height:34px;border-radius:50%;flex:none}
+.brand-mark b{font-family:var(--word);font-weight:700;font-size:19px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:2px;background:var(--sunk);border-radius:999px;padding:3px}
+.nav button{border:0;background:none;border-radius:999px;padding:5px 12px;font-size:14.5px;font-weight:600;color:var(--ink-2);white-space:nowrap}
+.nav button[aria-current="page"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgb(0 0 0 / .08)}
+
+/* day strip */
+.days{display:flex;gap:6px;overflow-x:auto;padding-block:14px 2px;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:6px 12px;text-align:left;position:relative;line-height:1.3}
+.day small{display:block;font-size:12.5px;color:var(--ink-3)}
+.day span{font-weight:600;font-size:15.5px}
+.day[aria-pressed="true"]{border-color:var(--accent);background:var(--hot-soft);color:var(--accent)}
+.day .newdot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+/* hero */
+.hero{display:grid;gap:8px;padding-block:18px 4px}
+.eyebrow{font-size:14px;font-weight:500;color:var(--ink-3)}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(25px,6.4vw,34px);line-height:1.3;margin:0;text-wrap:balance}
+.hero .sub{margin:0;color:var(--ink-2);font-size:17px;line-height:1.7;text-wrap:pretty}
+.since{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--accent);font-weight:500}
+.since i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+
+/* 30 sec card */
+.brief{background:var(--amber-soft);border-radius:18px;padding:16px 18px 18px;margin-top:16px}
+.brief h2{margin:0 0 10px;font-size:18px;font-weight:600;color:var(--amber);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.brief h2 small{font-size:13px;font-weight:500;color:var(--amber);opacity:.8}
+.brief ol{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:b}
+.brief li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:16.5px;line-height:1.7;counter-increment:b}
+.brief li::before{content:counter(b);font-family:var(--word);font-weight:700;font-size:15px;width:26px;height:26px;border-radius:50%;background:var(--surface);color:var(--amber);display:grid;place-items:center;margin-top:1px}
+.lede-tog{margin-top:12px}
+.lede-tog summary{cursor:pointer;font-size:14px;color:var(--amber);font-weight:500;list-style:none}
+.lede-tog summary::-webkit-details-marker{display:none}
+.lede-tog p{margin:8px 0 0;font-size:15px;color:var(--ink-2)}
+
+/* section head + filters */
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:28px 0 10px;flex-wrap:wrap}
+.sec h2{font-size:20px;font-weight:700;margin:0}
+.sec span{font-size:13.5px;color:var(--ink-3)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 13px;font-size:14px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.chip em{font-style:normal;font-size:13px;color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip[aria-pressed="true"] em{color:inherit;opacity:.75}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+.sq{width:8px;height:8px;border-radius:2px;flex:none;display:inline-block}
+.sq.hot{background:var(--hot)}.sq.notable{background:var(--mid)}.sq.watch{background:var(--ink-3)}
+
+/* stories */
+.list{display:grid;gap:10px;margin-top:12px}
+@media (min-width:1000px){.wide .list.two{grid-template-columns:1fr 1fr;align-items:start}}
+.story{background:var(--surface);border:1px solid var(--line);border-radius:16px;min-width:0}
+.story.hot{border-left:4px solid var(--hot)}
+.story.notable{border-left:4px solid var(--mid)}
+.story>summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;gap:6px}
+.story>summary::-webkit-details-marker{display:none}
+.meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
+.meta b{font-weight:600;display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.lvl{font-size:12px;font-weight:500;padding:1px 8px;border-radius:999px}
+.lvl.hot{background:var(--hot-soft);color:var(--hot)}.lvl.notable{background:var(--mid-soft);color:var(--amber)}.lvl.watch{background:var(--sunk);color:var(--ink-2)}
+.meta .read{margin-left:auto;font-size:12px;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.row h3{margin:0;font-weight:600;font-size:17.5px;line-height:1.55;text-wrap:pretty;min-width:0}
+.story.is-read .row h3{color:var(--ink-2)}
+.kf{text-align:right;max-width:96px}
+.kf b{display:block;font-family:var(--word);font-weight:700;font-size:22px;line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.kf small{display:block;font-size:11px;line-height:1.3;color:var(--ink-3);margin-top:2px}
+.todo{font-size:15.5px;line-height:1.65;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.todo b{color:var(--amber);font-weight:600}
+.story[open] .todo{display:none}
+@media (max-width:560px){.row{grid-template-columns:1fr;gap:6px}.kf{text-align:left;max-width:none;display:flex;align-items:baseline;gap:8px;order:-1}.kf b{font-size:20px}.kf small{margin:0}}
+.more-hint{font-size:13px;color:var(--accent);font-weight:500}
+.story[open] .more-hint{display:none}
+.body{padding:0 16px 16px;display:grid;gap:12px}
+.body .what{margin:0;font-size:16.5px;line-height:1.8}
+.dims{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0}
+.dim{padding:10px 12px;border-top:1px solid var(--line);display:grid;gap:2px}
+.dim:first-child{border-top:0}
+.dim dt{font-size:13.5px;font-weight:600;color:var(--ink-3)}
+.dim dd{margin:0;font-size:16px;line-height:1.7}
+.dim.opp{background:var(--good-soft)}.dim.opp dt{color:var(--good)}
+.dim.risk{background:var(--hot-soft)}.dim.risk dt{color:var(--hot)}
+.dim.act{background:var(--mid-soft)}.dim.act dt{color:var(--amber)}
+.foot-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px}
+.foot-row a{font-weight:500}
+.share{margin-left:auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13.5px;color:var(--ink-2)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+
+/* trends */
+.trends{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px 16px}
+.trend{padding:12px 0;border-top:1px solid var(--line);display:grid;gap:4px}
+.trend:first-child{border-top:0}
+.trend b{font-weight:600;font-size:16.5px}
+.trend span{font-size:15.5px;color:var(--ink-2)}
+
+/* search / archive */
+.searchbox{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);margin-top:16px}
+.group-date{font-size:14px;font-weight:600;color:var(--ink-3);margin:18px 0 0}
+.arch{display:grid;gap:8px;margin-top:14px}
+.arow{display:grid;gap:4px;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;width:100%}
+.arow small{font-size:13px;color:var(--ink-3)}
+.arow span{font-weight:600;font-size:16.5px;line-height:1.55}
+.empty{padding:32px 16px;text-align:center;color:var(--ink-2);border:1px dashed var(--line);border-radius:14px;margin-top:16px}
+
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:13.5px;color:var(--ink-3)}
+footer .heart{color:var(--accent)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:14px;z-index:20}
+.copyfield{width:100%;margin-top:6px;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--sunk);color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.story{transition:border-color .15s}}
+</style>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand-mark" href="#top" id="home"><img src="assets/jaiful-badge.png" alt="JAIFUL" width="34" height="34"><b>AI Update</b></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <button data-view="today" aria-current="page">วันนี้</button>
+      <button data-view="search">ค้นหา</button>
+      <button data-view="archive">ย้อนหลัง</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap" id="wrap">
+  <div id="app"><div class="empty">กำลังโหลดข่าว…</div></div>
+  <footer id="foot">
+    <span>สรุปทุกเช้า 07:00 น. โดย AI ที่อ่านจากแหล่งข่าวต้นทาง ทุกข่าวมีลิงก์ให้ตรวจสอบเอง</span>
+    <span><span class="heart">♥</span> JAIFUL — AI มาคืนเวลา ให้เราได้กลับไปใส่ใจกัน</span>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<!-- รายการวัน: งานประจำเช้าอัปเดตไฟล์นี้ทุกวัน -->
+<script src="data/manifest.js"></script>
+<script>
+const BRANDS={openai:"OpenAI",anthropic:"Anthropic",google:"Google",meta:"Meta",microsoft:"Microsoft",xai:"xAI",apple:"Apple",china:"ค่ายจีน",others:"อื่นๆ"};
+const LV=[["hot","ข่าวใหญ่"],["notable","น่าสนใจ"],["watch","จับตา"]];const LVL=Object.fromEntries(LV);const RANK={hot:0,notable:1,watch:2};
+const MON=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];const DOW=["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."];
+const SHARE_BASE=location.protocol.startsWith("http")&&!/claude/.test(location.hostname)?location.origin+location.pathname:"https://aiupdate.jaiful.life/";
+const MAN=(window.RADAR_MANIFEST||[]).slice().sort((a,b)=>a.d<b.d?1:-1);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const bname=b=>BRANDS[b]||BRANDS.others, bcol=b=>`var(--b-${BRANDS[b]?b:"others"})`;
+function dt(iso){const[y,m,d]=iso.split("-").map(Number);return{y,m,d,w:new Date(Date.UTC(y,m-1,d)).getUTCDay()}}
+const fShort=iso=>{const x=dt(iso);return `${x.d} ${MON[x.m-1]}`};
+const fLong=iso=>{const x=dt(iso);return `${DOW[x.w]} ${x.d} ${MON[x.m-1]} ${x.y+543}`};
+
+/* per-viewer memory: last visit + read stories */
+const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const lastSeen=store.get("jaiful-last-seen",null);
+let readSet=new Set(store.get("jaiful-read",[]));
+if(MAN[0]) store.set("jaiful-last-seen",MAN[0].d);
+const keyOf=(day,id)=>`${day}~${id}`;
+function markRead(k){if(readSet.has(k))return;readSet.add(k);store.set("jaiful-read",[...readSet].slice(-600))}
+
+/* day loading */
+const cache={},pend={};
+window.radarDay=d=>{if(d&&d.date)cache[d.date]=d};
+function loadDay(date){if(cache[date])return Promise.resolve(cache[date]);if(pend[date])return pend[date];
+  const m=MAN.find(x=>x.d===date);
+  return pend[date]=new Promise(res=>{const s=document.createElement("script");s.src=`data/days/${date}.js?v=${encodeURIComponent(m?.u||"")}`;s.onload=()=>res(cache[date]||null);s.onerror=()=>res(null);document.head.appendChild(s)})}
+
+const S={view:"today",date:MAN[0]?.d,lvl:"all",q:"",brand:"all",openKey:null};
+
+/* hash deep link: #2026-10-07~story-id */
+function readHash(){const h=decodeURIComponent(location.hash.slice(1));const m=h.match(/^(\d{4}-\d{2}-\d{2})~([\w.-]+)$/);if(m&&MAN.some(x=>x.d===m[1])){S.view="today";S.date=m[1];S.lvl="all";S.openKey=h;return true}return false}
+readHash();
+addEventListener("hashchange",()=>{if(readHash())render()});
+
+/* ---------- pieces ---------- */
+function storyHTML(it,day,showDate){
+  const k=keyOf(day,it.id), isRead=readSet.has(k), open=S.openKey===k;
+  const dim=(c,l,v)=>v?`<div class="dim ${c}"><dt>${l}</dt><dd>${esc(v)}</dd></div>`:"";
+  return `<details class="story ${esc(it.level)} ${isRead?"is-read":""}" data-key="${esc(k)}" id="s-${esc(k)}" ${open?"open":""}>
+  <summary>
+    <div class="meta"><b><span class="dot" style="background:${bcol(it.brand)}"></span>${esc(bname(it.brand))}</b>
+      <span class="lvl ${esc(it.level)}">${LVL[it.level]||"จับตา"}</span>
+      ${showDate?`<span>${esc(fShort(day))}</span>`:""}
+      ${isRead?`<span class="read">อ่านแล้ว</span>`:""}</div>
+    <div class="row"><h3>${esc(it.title)}</h3>${it.keyfig?.value?`<div class="kf"><b>${esc(it.keyfig.value)}</b><small>${esc(it.keyfig.label||"")}</small></div>`:""}</div>
+    ${it.action?`<div class="todo"><b>เราควรทำ</b> ${esc(it.action)}</div>`:""}
+    <span class="more-hint">แตะเพื่ออ่านสรุป 6 มุม</span>
+  </summary>
+  <div class="body">
+    <p class="what">${esc(it.summary)}</p>
+    <dl class="dims">
+      ${dim("","ทำไมสำคัญ",it.impact)}${dim("","กระทบใคร",it.who)}
+      ${dim("opp","โอกาส",it.opportunity)}${dim("risk","ข้อควรระวัง",it.risk)}${dim("act","เราควรทำอะไร",it.action)}
+    </dl>
+    <div class="foot-row">${it.url?`<a href="${esc(it.url)}" target="_blank" rel="noopener">อ่านต้นฉบับ · ${esc(it.source||"แหล่งข่าว")} ↗</a>`:""}
+      <button class="share" data-share="${esc(k)}">คัดลอกลิงก์ข่าวนี้</button></div>
+    ${(it.tags||[]).length?`<div class="tags">${it.tags.map(t=>`<span>#${esc(t)}</span>`).join("")}</div>`:""}
+  </div></details>`;
+}
+function daysHTML(){
+  return `<div class="days" role="group" aria-label="เลือกวัน">${MAN.slice(0,30).map(m=>{const x=dt(m.d);const isNew=lastSeen&&m.d>lastSeen;
+    return `<button class="day" data-date="${m.d}" aria-pressed="${m.d===S.date}"><small>${DOW[x.w]} · ${m.n} ข่าว</small><span>${fShort(m.d)}</span>${isNew?'<i class="newdot" aria-label="ใหม่"></i>':""}</button>`}).join("")}</div>`;
+}
+function lvlChips(pool){
+  const c={all:pool.length};pool.forEach(i=>c[i.level]=(c[i.level]||0)+1);
+  return `<div class="chips" role="group" aria-label="ระดับข่าว">
+    <button class="chip" data-lvl="all" aria-pressed="${S.lvl==="all"}">ทั้งหมด <em>${c.all}</em></button>
+    ${LV.filter(([k])=>c[k]).map(([k,l])=>`<button class="chip" data-lvl="${k}" aria-pressed="${S.lvl===k}"><span class="sq ${k}"></span>${l} <em>${c[k]}</em></button>`).join("")}</div>`;
+}
+
+/* ---------- views ---------- */
+function viewToday(){
+  const d=cache[S.date];
+  if(!d){loadDay(S.date).then(x=>x?render():($("#app").innerHTML=daysHTML()+`<div class="empty">โหลดข่าวของวันนี้ไม่สำเร็จ ลองรีเฟรชหน้า</div>`));return daysHTML()+`<div class="empty">กำลังโหลดข่าว…</div>`}
+  const [h1,...rest]=(d.headline||"").split(" — ");
+  const pool=d.items||[];
+  const items=pool.filter(i=>S.lvl==="all"||i.level===S.lvl).sort((a,b)=>(RANK[a.level]??3)-(RANK[b.level]??3));
+  const newDays=lastSeen?MAN.filter(m=>m.d>lastSeen).length:0;
+  const unread=pool.filter(i=>!readSet.has(keyOf(d.date,i.id))).length;
+  return daysHTML()+`
+  <section class="hero" id="top">
+    <span class="eyebrow">สรุปเช้า · ${esc(fLong(d.date))} · ${pool.length} ข่าว</span>
+    <h1>${esc(h1)}</h1>
+    ${rest.length?`<p class="sub">${esc(rest.join(" — "))}</p>`:""}
+    ${newDays>0&&S.date===MAN[0].d?`<span class="since"><i></i>มีสรุปใหม่ ${newDays} วันตั้งแต่ที่เปิดครั้งก่อน</span>`:""}
+  </section>
+  ${(d.tldr||[]).length?`<section class="brief" aria-labelledby="b-h"><h2 id="b-h">ถ้ามีเวลา 30 วินาที <small>3 เรื่องที่ต้องรู้</small></h2>
+    <ol>${d.tldr.map(t=>`<li><span>${esc(t)}</span></li>`).join("")}</ol>
+    ${d.lede?`<details class="lede-tog"><summary>อ่านภาพรวมของวัน ›</summary><p>${esc(d.lede)}</p></details>`:""}</section>`:""}
+  <div class="sec"><h2>ข่าวทั้งหมดของวัน</h2><span>${unread===pool.length?`${pool.length} ข่าว`:`ยังไม่อ่าน ${unread} จาก ${pool.length}`}</span></div>
+  ${lvlChips(pool)}
+  <div class="list two">${items.map(it=>storyHTML(it,d.date,false)).join("")||`<div class="empty">ไม่มีข่าวระดับนี้ในวันนี้</div>`}</div>
+  ${(d.trends||[]).length?`<div class="sec"><h2>เทรนด์ที่เห็นวันนี้</h2><span>${d.trends.length} เรื่อง</span></div>
+  <div class="trends">${d.trends.map(t=>`<div class="trend"><b>${esc(t.title)}</b><span>${esc(t.body)}</span></div>`).join("")}</div>`:""}`;
+}
+function viewSearch(){
+  const miss=MAN.filter(m=>!cache[m.d]);
+  if(miss.length) Promise.all(miss.map(m=>loadDay(m.d))).then(()=>{if(S.view==="search")renderList()});
+  return `<input class="searchbox" id="q" type="search" placeholder="ค้นทุกวัน เช่น agent, ราคา, Gemini" value="${esc(S.q)}" aria-label="ค้นหาข่าว" autocomplete="off">
+    <div class="chips" role="group" aria-label="ค่าย" style="margin-top:12px" id="brandchips"></div>
+    <div id="results"></div>`;
+}
+function renderList(){
+  const all=[];MAN.forEach(m=>(cache[m.d]?.items||[]).forEach(it=>all.push({it,day:m.d})));
+  const words=S.q.toLowerCase().split(/\s+/).filter(Boolean);
+  const hit=x=>{const it=x.it;const t=[it.title,it.summary,it.impact,it.who,it.opportunity,it.risk,it.action,(it.tags||[]).join(" "),bname(it.brand)].join(" ").toLowerCase();return words.every(w=>t.includes(w))};
+  const byQ=all.filter(hit);
+  const bc={};byQ.forEach(x=>bc[x.it.brand]=(bc[x.it.brand]||0)+1);
+  $("#brandchips").innerHTML=`<button class="chip" data-brand="all" aria-pressed="${S.brand==="all"}">ทุกค่าย <em>${byQ.length}</em></button>`+
+    Object.keys(BRANDS).filter(b=>bc[b]).map(b=>`<button class="chip" data-brand="${b}" aria-pressed="${S.brand===b}"><span class="dot" style="background:${bcol(b)}"></span>${esc(bname(b))} <em>${bc[b]}</em></button>`).join("");
+  const res=byQ.filter(x=>S.brand==="all"||x.it.brand===S.brand);
+  const loading=MAN.some(m=>!cache[m.d]);
+  if(!res.length){$("#results").innerHTML=`<div class="empty">${loading?"กำลังโหลดข่าวย้อนหลัง…":"ไม่พบข่าวที่ตรงกับคำค้นนี้ ลองใช้คำที่สั้นลง"}</div>`;return}
+  const by={};res.forEach(x=>(by[x.day]=by[x.day]||[]).push(x.it));
+  $("#results").innerHTML=`<div class="sec"><h2>${S.q?"ผลการค้นหา":"ข่าวทั้งหมด"}</h2><span>${res.length} ข่าว${loading?" · กำลังโหลดเพิ่ม…":""}</span></div>`+
+    Object.keys(by).sort().reverse().slice(0,30).map(d=>`<p class="group-date">${esc(fLong(d))}</p><div class="list two">${by[d].sort((a,b)=>(RANK[a.level]??3)-(RANK[b.level]??3)).map(it=>storyHTML(it,d,false)).join("")}</div>`).join("");
+}
+function viewArchive(){
+  return `<div class="sec"><h2>สรุปย้อนหลัง</h2><span>${MAN.length} วัน · ${MAN.reduce((s,m)=>s+(m.n||0),0)} ข่าว</span></div>
+  <div class="arch">${MAN.map(m=>`<button class="arow" data-open="${m.d}"><small>${esc(fLong(m.d))} · ${m.n} ข่าว${lastSeen&&m.d>lastSeen?" · ใหม่":""}</small><span>${esc(m.h.split(" — ")[0])}</span></button>`).join("")}</div>`;
+}
+
+function render(){
+  document.querySelectorAll(".nav button").forEach(b=>b.setAttribute("aria-current",b.dataset.view===S.view?"page":"false"));
+  $("#wrap").classList.toggle("wide",S.view!=="archive");
+  if(!MAN.length){$("#app").innerHTML=`<div class="empty">ยังไม่มีสรุปข่าว ฉบับแรกจะขึ้นเวลา 07:00 น.</div>`;return}
+  $("#app").innerHTML=S.view==="search"?viewSearch():S.view==="archive"?viewArchive():viewToday();
+  if(S.view==="search"){renderList();}
+  if(S.openKey){const el=document.getElementById("s-"+S.openKey);if(el){markRead(S.openKey);S.openKey=null;el.scrollIntoView({block:"start"});window.scrollBy(0,-70)}}
+}
+
+let tt;function toast(msg){const t=$("#toast");t.textContent=msg;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2200)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button,a#home");if(!b)return;
+  if(b.id==="home"){e.preventDefault();S.view="today";S.date=MAN[0]?.d;S.lvl="all";render();scrollTo({top:0});return}
+  if(b.dataset.view){S.view=b.dataset.view;S.lvl="all";render();scrollTo({top:0});if(S.view==="search")$("#q")?.focus()}
+  else if(b.dataset.date){S.date=b.dataset.date;S.lvl="all";render()}
+  else if(b.dataset.lvl){S.lvl=b.dataset.lvl;render()}
+  else if(b.dataset.brand){S.brand=b.dataset.brand;renderList()}
+  else if(b.dataset.open){S.view="today";S.date=b.dataset.open;S.lvl="all";render();scrollTo({top:0})}
+  else if(b.dataset.share){
+    e.preventDefault();const url=SHARE_BASE+"#"+b.dataset.share;
+    const fallback=()=>{if(b.parentElement.nextElementSibling?.classList.contains("copyfield"))return;const i=document.createElement("input");i.className="copyfield";i.value=url;i.readOnly=true;i.setAttribute("aria-label","ลิงก์ข่าวนี้");b.parentElement.after(i);i.select();toast("กดค้างที่ลิงก์เพื่อคัดลอก")};
+    try{navigator.clipboard.writeText(url).then(()=>toast("คัดลอกลิงก์แล้ว"),fallback)}catch(err){fallback()}
+  }
+});
+document.addEventListener("toggle",e=>{const d=e.target;if(d.classList?.contains("story")&&d.open){markRead(d.dataset.key)}},true);
+let qt;document.addEventListener("input",e=>{if(e.target.id==="q"){clearTimeout(qt);qt=setTimeout(()=>{S.q=e.target.value.trim();S.brand="all";renderList()},200)}});
+render();
+</script>
+</body>
+</html>
